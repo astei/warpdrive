@@ -83,27 +83,22 @@ tasks {
 
         // Exclude Checker Framework annotations
         exclude("org/checkerframework/checker/**")
-
-        relocate("org.bstats", "com.velocitypowered.proxy.bstats")
     }
 }
 
 val adventureVersion: String by project.extra
 val adventureFacetVersion: String by project.extra
 val asyncHttpClientVersion: String by project.extra
-val bstatsVersion: String by project.extra
 val completableFuturesVersion: String by project.extra
 val disruptorVersion: String by project.extra
 val fastutilVersion: String by project.extra
 val flareVersion: String by project.extra
-val jlineVersion: String by project.extra
 val joptSimpleVersion: String by project.extra
 val lmbdaVersion: String by project.extra
 val log4jVersion: String by project.extra
 val nettyVersion: String by project.extra
 val nightConfigVersion: String by project.extra
 val semver4jVersion: String by project.extra
-val terminalConsoleAppenderVersion: String by project.extra
 
 dependencies {
     implementation(project(":warpdrive-api"))
@@ -124,8 +119,6 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-jul:${log4jVersion}")
 
     implementation("net.sf.jopt-simple:jopt-simple:$joptSimpleVersion") // command-line options
-    implementation("net.minecrell:terminalconsoleappender:$terminalConsoleAppenderVersion")
-    runtimeOnly("org.jline:jline-terminal-jansi:$jlineVersion")  // Needed for JLine
     runtimeOnly("com.lmax:disruptor:$disruptorVersion") // Async loggers
 
     implementation("it.unimi.dsi:fastutil-core:$fastutilVersion")
@@ -140,7 +133,6 @@ dependencies {
 
     implementation("com.electronwill.night-config:toml:$nightConfigVersion")
 
-    implementation("org.bstats:bstats-base:$bstatsVersion")
     implementation("org.lanternpowered:lmbda:$lmbdaVersion")
 
     implementation("space.vectrix.flare:flare:$flareVersion")

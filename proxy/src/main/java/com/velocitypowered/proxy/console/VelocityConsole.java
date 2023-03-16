@@ -26,7 +26,6 @@ import com.velocitypowered.api.permission.Tristate;
 import com.velocitypowered.api.proxy.ConsoleCommandSource;
 import com.velocitypowered.proxy.VelocityServer;
 import com.velocitypowered.proxy.util.ClosestLocaleMatcher;
-import java.util.List;
 import java.util.Locale;
 import net.kyori.adventure.audience.MessageType;
 import net.kyori.adventure.identity.Identity;
@@ -35,25 +34,20 @@ import net.kyori.adventure.platform.facet.FacetPointers;
 import net.kyori.adventure.platform.facet.FacetPointers.Type;
 import net.kyori.adventure.pointer.Pointers;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.translation.GlobalTranslator;
-import net.minecrell.terminalconsole.SimpleTerminalConsole;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.io.IoBuilder;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.NotNull;
-import org.jline.reader.Candidate;
-import org.jline.reader.LineReader;
-import org.jline.reader.LineReaderBuilder;
 
 /**
  * Implements the Velocity console, including sending commands and being the recipient
  * of messages from plugins.
  */
-public final class VelocityConsole extends SimpleTerminalConsole implements ConsoleCommandSource {
+public final class VelocityConsole implements ConsoleCommandSource {
 
   private static final Logger logger = LogManager.getLogger(VelocityConsole.class);
 
@@ -106,47 +100,6 @@ public final class VelocityConsole extends SimpleTerminalConsole implements Cons
           event.getProvider().getClass().getName());
       this.permissionFunction = ALWAYS_TRUE;
     }
-  }
-
-  @Override
-  protected LineReader buildReader(LineReaderBuilder builder) {
-    return super.buildReader(builder
-        .appName("Velocity")
-        .completer((reader, parsedLine, list) -> {
-          try {
-            List<String> offers = this.server.getCommandManager()
-                .offerSuggestions(this, parsedLine.line())
-                .join(); // Console doesn't get harmed much by this...
-            for (String offer : offers) {
-              list.add(new Candidate(offer));
-            }
-          } catch (Exception e) {
-            logger.error("An error occurred while trying to perform tab completion.", e);
-          }
-        })
-    );
-  }
-
-  @Override
-  protected boolean isRunning() {
-    return !this.server.isShutdown();
-  }
-
-  @Override
-  protected void runCommand(String command) {
-    try {
-      if (!this.server.getCommandManager().executeAsync(this, command).join()) {
-        sendMessage(Component.translatable("velocity.command.command-does-not-exist",
-            NamedTextColor.RED));
-      }
-    } catch (Exception e) {
-      logger.error("An error occurred while running this command.", e);
-    }
-  }
-
-  @Override
-  protected void shutdown() {
-    this.server.shutdown(true);
   }
 
   @Override

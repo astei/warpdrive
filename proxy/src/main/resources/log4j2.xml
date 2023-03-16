@@ -19,21 +19,13 @@
 <!-- Disable shutdown hook, because we have our own -->
 <Configuration status="warn" shutdownHook="disable">
   <Appenders>
-    <TerminalConsole name="TerminalConsole">
-      <PatternLayout>
-        <LoggerNamePatternSelector
-          defaultPattern="%highlightError{[%d{HH:mm:ss} %level] [%logger]: %minecraftFormatting{%msg}%n%xEx}">
-          <!-- Velocity doesn't need a prefix -->
-          <PatternMatch key="com.velocitypowered."
-            pattern="%highlightError{[%d{HH:mm:ss} %level]: %minecraftFormatting{%msg}%n%xEx}"/>
-        </LoggerNamePatternSelector>
-      </PatternLayout>
-    </TerminalConsole>
+    <Console name="Console">
+      <PatternLayout pattern="[%d{HH:mm:ss} %level]: %msg%n%xEx" />
+    </Console>
     <RollingRandomAccessFile name="File" fileName="logs/latest.log"
       filePattern="logs/%d{yyyy-MM-dd}-%i.log.gz"
       immediateFlush="false">
-      <PatternLayout
-        pattern="[%d{HH:mm:ss}] [%t/%level] [%logger]: %minecraftFormatting{%msg}{strip}%n"/>
+      <PatternLayout pattern="[%d{HH:mm:ss}] [%t/%level] [%logger]: %msg%n"/>
       <Policies>
         <TimeBasedTriggeringPolicy/>
         <OnStartupTriggeringPolicy/>
@@ -43,7 +35,7 @@
 
   <Loggers>
     <Root level="info">
-      <AppenderRef ref="TerminalConsole"/>
+      <AppenderRef ref="Console"/>
       <AppenderRef ref="File"/>
     </Root>
   </Loggers>

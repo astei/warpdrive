@@ -176,13 +176,13 @@ public class VelocityServer implements ProxyServer, ForwardingAudience {
     String implVersion;
     String implVendor;
     if (pkg != null) {
-      implName = MoreObjects.firstNonNull(pkg.getImplementationTitle(), "Velocity");
+      implName = MoreObjects.firstNonNull(pkg.getImplementationTitle(), "Warpdrive");
       implVersion = MoreObjects.firstNonNull(pkg.getImplementationVersion(), "<unknown>");
-      implVendor = MoreObjects.firstNonNull(pkg.getImplementationVendor(), "Velocity Contributors");
+      implVendor = MoreObjects.firstNonNull(pkg.getImplementationVendor(), "Warpdrive Contributors");
     } else {
-      implName = "Velocity";
+      implName = "Warpdrive";
       implVersion = "<unknown>";
-      implVendor = "Velocity Contributors";
+      implVendor = "Warpdrive Contributors";
     }
 
     return new ProxyVersion(implName, implVendor, implVersion);
@@ -243,8 +243,6 @@ public class VelocityServer implements ProxyServer, ForwardingAudience {
     if (configuration.isQueryEnabled()) {
       this.cm.queryBind(configuration.getBind().getHostString(), configuration.getQueryPort());
     }
-
-    Metrics.VelocityMetrics.startMetrics(this, configuration.getMetrics());
   }
 
   private void registerTranslations() {
