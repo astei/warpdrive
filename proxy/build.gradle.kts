@@ -106,8 +106,8 @@ val semver4jVersion: String by project.extra
 val terminalConsoleAppenderVersion: String by project.extra
 
 dependencies {
-    implementation(project(":velocity-api"))
-    implementation(project(":velocity-native"))
+    implementation(project(":warpdrive-api"))
+    implementation(project(":warpdrive-native"))
 
     implementation("io.netty:netty-codec:${nettyVersion}")
     implementation("io.netty:netty-codec-haproxy:${nettyVersion}")
