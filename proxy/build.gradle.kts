@@ -17,8 +17,8 @@ tasks {
 
     jar {
         manifest {
-            attributes["Implementation-Title"] = "Velocity"
-            attributes["Implementation-Vendor"] = "Velocity Contributors"
+            attributes["Implementation-Title"] = "Warpdrive"
+            attributes["Implementation-Vendor"] = "Warpdrive Contributors"
             attributes["Multi-Release"] = "true"
         }
     }
