@@ -9,7 +9,7 @@ plugins {
 val junitVersion: String by project.extra
 
 allprojects {
-    group = "com.velocitypowered"
+    group = "me.steinborn.warpdrive"
     version = "3.2.0-SNAPSHOT"
 }
 
