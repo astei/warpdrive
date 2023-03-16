@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2020-2023 Velocity Contributors
+ * Copyright (C) $YEAR Warpdrive Contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

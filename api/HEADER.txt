@@ -1,7 +1,8 @@
 /*
  * Copyright (C) $YEAR Velocity Contributors
+ * Copyright (C) $YEAR Warpdrive Contributors
  *
- * The Velocity API is licensed under the terms of the MIT License. For more details,
+ * The Warpdrive API is licensed under the terms of the MIT License. For more details,
  * reference the LICENSE file in the api top-level directory.
  */
 
